@@ -77,5 +77,13 @@ func ConfigureYAMLFeaturesFromConfig(config *Config) (yamlFeatures.YAMLFeatureLi
 		featureList = append(featureList, quoteStyleFeature)
 	}
 
+	if config.ForceBlockScalarStyle != "" {
+		blockScalarFeature, err := yamlFeatures.FeatureForceBlockScalar(config.ForceBlockScalarStyle)
+		if err != nil {
+			return featureList, err
+		}
+		featureList = append(featureList, blockScalarFeature)
+	}
+
 	return featureList, nil
 }

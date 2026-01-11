@@ -225,6 +225,41 @@ b: [1, 2]`,
 			badConfigErr: features.ErrUnrecognizedQuoteStyle,
 		},
 		{
+			name: "force literal block scalar style",
+			config: map[string]any{
+				"force_block_scalar_style": "literal",
+			},
+			input:  `a: "hello\nworld"`,
+			expect: `a: |-
+  hello
+  world`,
+		},
+		{
+			name: "force folded block scalar style",
+			config: map[string]any{
+				"force_block_scalar_style": "folded",
+			},
+			input:  `a: "hello\nworld"`,
+			expect: `a: >-
+  hello
+
+  world`,
+		},
+		{
+			name: "force block scalar does not affect single line strings",
+			config: map[string]any{
+				"force_block_scalar_style": "literal",
+			},
+			input: `a: "hello world"`,
+		},
+		{
+			name: "invalid block scalar style",
+			config: map[string]any{
+				"force_block_scalar_style": "invalid",
+			},
+			badConfigErr: features.ErrUnrecognizedBlockScalarStyle,
+		},
+		{
 			name: "alias key correction",
 			input: `alias: &a something
 map:

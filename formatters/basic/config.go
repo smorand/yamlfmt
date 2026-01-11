@@ -39,8 +39,9 @@ type Config struct {
 	ArrayIndent               int                        `mapstructure:"array_indent"`
 	IndentRootArray           bool                       `mapstructure:"indent_root_array"`
 	DisableAliasKeyCorrection bool                       `mapstructure:"disable_alias_key_correction"`
-	ForceArrayStyle           yamlFeatures.SequenceStyle `mapstructure:"force_array_style"`
-	ForceQuoteStyle           yamlFeatures.QuoteStyle    `mapstructure:"force_quote_style"`
+	ForceArrayStyle           yamlFeatures.SequenceStyle    `mapstructure:"force_array_style"`
+	ForceQuoteStyle           yamlFeatures.QuoteStyle       `mapstructure:"force_quote_style"`
+	ForceBlockScalarStyle     yamlFeatures.BlockScalarStyle `mapstructure:"force_block_scalar_style"`
 }
 
 func DefaultConfig() *Config {
